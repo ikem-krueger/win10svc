@@ -4,6 +4,7 @@
 # In conjunction with Tcl version 8.6
 #    Jul 28, 2017 01:53:51 PM
 import sys
+import ctypes
 
 try:
     from Tkinter import *
@@ -192,7 +193,13 @@ class Windows_10_Service_Repair:
 
 
 if __name__ == '__main__':
-    vp_start_gui()
+    if ctypes.windll.shell32.IsUserAnAdmin():
+        vp_start_gui()
+    else:
+        hinstance = ctypes.windll.shell32.ShellExecuteW(None, 'runas', sys.executable, sys.argv[0], None, 0)
+
+        if hinstance != 2:
+            sys.exit(1)
 
 
 
