@@ -5,6 +5,7 @@
 #    Jul 25, 2017 01:18:29 PM
 
 import threading
+import zipfile
 from time import sleep
 import os, sys
 import re
@@ -31,8 +32,11 @@ def show_info_dialog(p1):
 # sc [start|stop] <service>
 
 def update_progress_bar():
-    path = "Windows 10 default services"
+    path = os.getenv("TEMP") + "/win10srv"
 
+    zip = zipfile.ZipFile("services.zip")
+    zip.extractall(path)
+    
     reg_files = os.listdir(path)
     no_files = len(reg_files)
 
