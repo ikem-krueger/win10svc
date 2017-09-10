@@ -198,8 +198,7 @@ if __name__ == '__main__':
     else:
         hinstance = ctypes.windll.shell32.ShellExecuteW(None, 'runas', sys.executable, sys.argv[0], None, 0)
 
-        if hinstance != 2:
+        if hinstance <= 32:
             sys.exit(1)
-
 
 
