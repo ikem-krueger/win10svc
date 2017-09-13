@@ -4,6 +4,7 @@
 # In conjunction with Tcl version 8.6
 #    Jul 25, 2017 01:18:29 PM
 
+import ctypes
 import threading
 import zipfile
 from time import sleep
@@ -24,14 +25,28 @@ except ImportError:
     py3 = 1
 
 
-def show_info_dialog(p1):
-    print('show_info_dialog()')
+def show_about_dialog(p1):
+    print("debug: show_about_dialog()")
+
     sys.stdout.flush()
 
-# sc query type=service
-# sc [start|stop] <service>
+def show_log_file(p1):
+    print("debug: show_log_file()")
+    
+    sys.stdout.flush()
 
 def update_progress_bar():
+    # sc query type=service
+    # sc [start|stop] <service>
+
+    top_level.unbind('<Alt-a>')
+    top_level.unbind('<Alt-l>')
+    top_level.unbind('<Alt-r>')
+
+    w.TButton1.configure(state=DISABLED)
+    w.TButton2.configure(state=DISABLED)
+    w.TButton3.configure(state=DISABLED)
+
     path = os.getenv("TEMP") + "/win10srv"
 
     zip = zipfile.ZipFile("services.zip")
@@ -50,33 +65,57 @@ def update_progress_bar():
         service = re.subn("_", " ", reg_file)[0]
         service = re.subn("\.reg$", "", service)[0]
 
-        w.Label2["text"] = service
-        w.Label8["text"] = "Reset..."
+        w.TLabel2["text"] = service
 
         r_value = subprocess.call(["reg", "import", "%s/%s" % (path, reg_file)]) # reg import yourfile.reg
 
         if r_value == 0:
-            w.Label8["text"] = "Done"
+            w.TLabel4["text"] = "Success"
 
             success += 1
         else:
+            w.TLabel4["text"] = "Failure"
+
             failure += 1
             
             reg_files_error.append(reg_file)
         
-        w.Label4["text"] = success
-        w.Label6["text"] = failure
+        w.TLabel6["text"] = success
+        w.TLabel8["text"] = failure
 
         print("%s%% %s %s" % (percent, service, r_value))
         
         w.TProgressbar1["value"] = percent
 
-    #print(reg_files_error)
+    w.TButton1.configure(state=NORMAL)
+    w.TButton2.configure(state=NORMAL)
+    w.TButton3.configure(state=NORMAL)
+
+    w.TButton2.bind('<Button-1>',lambda e:show_log_file(e))
+    w.TButton2.bind('<Return>',lambda e:show_log_file(e))
+    w.TButton2.bind('<space>',lambda e:show_log_file(e))
+
+    w.TButton3["text"] = "Done"
+    w.TButton3.bind('<Button-1>',lambda e:destroy_window())
+    w.TButton3.bind('<Return>',lambda e:destroy_window())
+    w.TButton3.bind('<space>',lambda e:destroy_window())
+
+    top_level.bind('<Alt-a>',lambda e:show_about_dialog(e))
+    top_level.bind('<Alt-l>',lambda e:show_log_file(e))
+    top_level.bind('<Alt-d>',lambda e:destroy_window())
+    
+    '''
+    w.TLabel4["text"] = "Success"
+    w.TLabel6["text"] = 219
+    w.TLabel8["text"] = 0
+    '''
 
 def repair_windows_services(p1):
-    print('repair_service_files()')
+    '''
+    print('debug: repair_service_files()')
 
     sys.stdout.flush()
+    '''
 
     t = threading.Thread(target=update_progress_bar)
     t.start()
@@ -94,5 +133,13 @@ def destroy_window():
     top_level = None
 
 if __name__ == '__main__':
-    import win10srv
-    win10srv.vp_start_gui()
+    if ctypes.windll.shell32.IsUserAnAdmin():
+        import win10srv
+        win10srv.vp_start_gui()
+    else:
+        hinstance = ctypes.windll.shell32.ShellExecuteW(None, 'runas', sys.executable, sys.argv[0], None, 0)
+
+        if hinstance <= 32:
+            sys.exit(1)
+
+

@@ -22,7 +22,7 @@ set vTcl(active_menu_fg) #000000
 if {[info exists vTcl(sourcing)]} {
 
 proc vTcl:project:info {} {
-    set base .top37
+    set base .top38
     namespace eval ::widgets::$base {
         set dflt,origin 0
         set runvisible 1
@@ -48,9 +48,9 @@ proc vTcl:project:info {} {
 # GENERATED GUI PROCEDURES
 #
 
-proc vTclWindow.top37 {base} {
+proc vTclWindow.top38 {base} {
     if {$base == ""} {
-        set base .top37
+        set base .top38
     }
     if {[winfo exists $base]} {
         wm deiconify $base; return
@@ -63,111 +63,94 @@ proc vTclWindow.top37 {base} {
         -background {#d9d9d9} -highlightbackground {#d9d9d9} \
         -highlightcolor black 
     wm focusmodel $top passive
-    wm geometry $top 222x165+464+258
+    wm geometry $top 270x166+428+169
     update
     # set in toplevel.wgt.
     global vTcl
     set vTcl(save,dflt,origin) 0
-    wm maxsize $top 1268 989
-    wm minsize $top 120 1
+    wm maxsize $top 1276 997
+    wm minsize $top 130 10
     wm overrideredirect $top 0
-    wm resizable $top 1 1
+    wm resizable $top 0 0
     wm deiconify $top
-    wm title $top "Windows 10 Service Repair"
+    wm title $top "New Toplevel 1"
     vTcl:DefineAlias "$top" "Toplevel1" vTcl:Toplevel:WidgetProc "" 1
-    ttk::progressbar $top.tPr40
-    vTcl:DefineAlias "$top.tPr40" "TProgressbar1" vTcl:WidgetProc "Toplevel1" 1
-    label $top.lab41 \
-        -activebackground {#f9f9f9} -activeforeground black -anchor w \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text Service: 
-    vTcl:DefineAlias "$top.lab41" "Label1" vTcl:WidgetProc "Toplevel1" 1
-    button $top.but42 \
-        -activebackground {#d9d9d9} -activeforeground {#000000} \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -pady 0 -text Repair -underline 0 
-    vTcl:DefineAlias "$top.but42" "Button1" vTcl:WidgetProc "Toplevel1" 1
-    bind $top.but42 <Button-1> {
-        lambda e: repair_windows_services(e)
-    }
-    button $top.but45 \
-        -activebackground {#d9d9d9} -activeforeground {#000000} \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -pady 0 -text Info -underline 0 
-    vTcl:DefineAlias "$top.but45" "Button3" vTcl:WidgetProc "Toplevel1" 1
-    bind $top.but45 <Button-1> {
-        lambda e: show_info_dialog(e)
-    }
-    label $top.lab46 \
-        -activebackground {#f9f9f9} -activeforeground black -anchor w \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text None 
-    vTcl:DefineAlias "$top.lab46" "Label2" vTcl:WidgetProc "Toplevel1" 1
-    label $top.lab37 \
-        -activebackground {#f9f9f9} -activeforeground black \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text Success: 
-    vTcl:DefineAlias "$top.lab37" "Label3" vTcl:WidgetProc "Toplevel1" 1
-    label $top.lab38 \
-        -activebackground {#f9f9f9} -activeforeground black -anchor w \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text 0 
-    vTcl:DefineAlias "$top.lab38" "Label4" vTcl:WidgetProc "Toplevel1" 1
-    label $top.lab39 \
-        -activebackground {#f9f9f9} -activeforeground black \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text Failure: 
-    vTcl:DefineAlias "$top.lab39" "Label5" vTcl:WidgetProc "Toplevel1" 1
-    label $top.lab40 \
-        -activebackground {#f9f9f9} -activeforeground black -anchor w \
-        -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -highlightbackground {#d9d9d9} \
-        -highlightcolor black -text 0 
-    vTcl:DefineAlias "$top.lab40" "Label6" vTcl:WidgetProc "Toplevel1" 1
-    label $top.lab42 \
-        -anchor w -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -text Status: 
-    vTcl:DefineAlias "$top.lab42" "Label7" vTcl:WidgetProc "Toplevel1" 1
-    label $top.lab43 \
-        -anchor w -background {#d9d9d9} -disabledforeground {#a3a3a3} \
-        -foreground {#000000} -text None 
-    vTcl:DefineAlias "$top.lab43" "Label8" vTcl:WidgetProc "Toplevel1" 1
+    ttk::label $top.tLa39 \
+        -background {#d9d9d9} -foreground {#000000} -relief flat \
+        -text Service: 
+    vTcl:DefineAlias "$top.tLa39" "TLabel1" vTcl:WidgetProc "Toplevel1" 1
+    ttk::label $top.tLa40 \
+        -background {#d9d9d9} -foreground {#000000} -relief flat -text None 
+    vTcl:DefineAlias "$top.tLa40" "TLabel2" vTcl:WidgetProc "Toplevel1" 1
+    ttk::label $top.tLa41 \
+        -background {#d9d9d9} -foreground {#000000} -relief flat \
+        -text Status: 
+    vTcl:DefineAlias "$top.tLa41" "TLabel3" vTcl:WidgetProc "Toplevel1" 1
+    ttk::label $top.tLa42 \
+        -background {#d9d9d9} -foreground {#000000} -relief flat -text None 
+    vTcl:DefineAlias "$top.tLa42" "TLabel4" vTcl:WidgetProc "Toplevel1" 1
+    ttk::label $top.tLa43 \
+        -background {#d9d9d9} -foreground {#000000} -relief flat \
+        -text Success: 
+    vTcl:DefineAlias "$top.tLa43" "TLabel5" vTcl:WidgetProc "Toplevel1" 1
+    ttk::label $top.tLa44 \
+        -background {#d9d9d9} -foreground {#000000} -relief flat -text 0 
+    vTcl:DefineAlias "$top.tLa44" "TLabel6" vTcl:WidgetProc "Toplevel1" 1
+    ttk::label $top.tLa45 \
+        -background {#d9d9d9} -foreground {#000000} -relief flat \
+        -text Failure: 
+    vTcl:DefineAlias "$top.tLa45" "TLabel7" vTcl:WidgetProc "Toplevel1" 1
+    ttk::label $top.tLa46 \
+        -background {#d9d9d9} -foreground {#000000} -relief flat -text 0 
+    vTcl:DefineAlias "$top.tLa46" "TLabel8" vTcl:WidgetProc "Toplevel1" 1
+    ttk::progressbar $top.tPr47
+    vTcl:DefineAlias "$top.tPr47" "TProgressbar1" vTcl:WidgetProc "Toplevel1" 1
+    ttk::style configure TButton -background #d9d9d9
+    ttk::style configure TButton -foreground #000000
+    ttk::style configure TButton -font TkDefaultFont
+    ttk::button $top.tBu48 \
+        -takefocus {} -text About -underline 0 
+    vTcl:DefineAlias "$top.tBu48" "TButton1" vTcl:WidgetProc "Toplevel1" 1
+    ttk::style configure TButton -background #d9d9d9
+    ttk::style configure TButton -foreground #000000
+    ttk::style configure TButton -font TkDefaultFont
+    ttk::button $top.tBu49 \
+        -takefocus {} -text Log -underline 0 
+    vTcl:DefineAlias "$top.tBu49" "TButton2" vTcl:WidgetProc "Toplevel1" 1
+    ttk::style configure TButton -background #d9d9d9
+    ttk::style configure TButton -foreground #000000
+    ttk::style configure TButton -font TkDefaultFont
+    ttk::button $top.tBu50 \
+        -takefocus 1 -text Repair -underline 0 -state disabled 
+    vTcl:DefineAlias "$top.tBu50" "TButton3" vTcl:WidgetProc "Toplevel1" 1
     ###################
     # SETTING GEOMETRY
     ###################
-    place $top.tPr40 \
-        -in $top -x 10 -y 100 -width 200 -relwidth 0 -height 22 -relheight 0 \
-        -anchor nw -bordermode ignore 
-    place $top.lab41 \
-        -in $top -x 10 -y 10 -width 46 -relwidth 0 -height 21 -relheight 0 \
-        -anchor nw -bordermode ignore 
-    place $top.but42 \
-        -in $top -x 166 -y 130 -anchor nw -bordermode ignore 
-    place $top.but45 \
-        -in $top -x 10 -y 130 -anchor nw -bordermode ignore 
-    place $top.lab46 \
-        -in $top -x 60 -y 10 -width 144 -relwidth 0 -height 21 -relheight 0 \
-        -anchor nw -bordermode ignore 
-    place $top.lab37 \
-        -in $top -x 10 -y 50 -anchor nw -bordermode ignore 
-    place $top.lab38 \
-        -in $top -x 60 -y 50 -width 140 -relwidth 0 -height 21 -relheight 0 \
-        -anchor nw -bordermode ignore 
-    place $top.lab39 \
-        -in $top -x 10 -y 70 -anchor nw -bordermode ignore 
-    place $top.lab40 \
-        -in $top -x 60 -y 70 -width 140 -anchor nw -bordermode ignore 
-    place $top.lab42 \
+    place $top.tLa39 \
+        -in $top -x 10 -y 10 -anchor nw -bordermode ignore 
+    place $top.tLa40 \
+        -in $top -x 60 -y 10 -anchor nw -bordermode ignore 
+    place $top.tLa41 \
         -in $top -x 10 -y 30 -anchor nw -bordermode ignore 
-    place $top.lab43 \
-        -in $top -x 60 -y 30 -width 144 -anchor nw -bordermode ignore 
+    place $top.tLa42 \
+        -in $top -x 60 -y 30 -anchor nw -bordermode ignore 
+    place $top.tLa43 \
+        -in $top -x 10 -y 50 -anchor nw -bordermode ignore 
+    place $top.tLa44 \
+        -in $top -x 60 -y 50 -anchor nw -bordermode ignore 
+    place $top.tLa45 \
+        -in $top -x 10 -y 70 -anchor nw -bordermode ignore 
+    place $top.tLa46 \
+        -in $top -x 60 -y 70 -anchor nw -bordermode ignore 
+    place $top.tPr47 \
+        -in $top -x 10 -y 100 -width 250 -relwidth 0 -height 22 -relheight 0 \
+        -anchor nw -bordermode ignore 
+    place $top.tBu48 \
+        -in $top -x 10 -y 130 -anchor nw -bordermode ignore 
+    place $top.tBu49 \
+        -in $top -x 100 -y 130 -anchor nw -bordermode ignore 
+    place $top.tBu50 \
+        -in $top -x 180 -y 130 -anchor nw -bordermode ignore 
 
     vTcl:FireEvent $base <<Ready>>
 }
@@ -190,5 +173,5 @@ bind "_TopLevel" <Destroy> {
 }
 
 Window show .
-Window show .top37
+Window show .top38
 
