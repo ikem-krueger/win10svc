@@ -1,0 +1,4 @@
+- [ ] Py2Exe
+- [ ] Check for Windows 10
+- [ ] Zip services.zip
+- [ ] Log File/About dialog
