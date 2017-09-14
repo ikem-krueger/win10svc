@@ -1,4 +1,4 @@
-- [ ] Py2Exe
-- [ ] Check for Windows 10
-- [ ] Zip services.zip
-- [ ] Log File/About dialog
+- [ ] build executable with "py2exe"
+- [ ] implement check for Windows 10
+- [ ] move extracting of the "services.zip" in a separate function
+- [ ] merge log file/about dialog
