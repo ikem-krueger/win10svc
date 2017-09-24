@@ -26,9 +26,7 @@ except ImportError:
 
 
 def show_about_dialog(p1):
-    print("debug: show_about_dialog()")
-
-    sys.stdout.flush()
+    subprocess.call(["python", "dialogs/about_dialog.py"])
 
 def show_log_file(p1):
     print("debug: show_log_file()")
