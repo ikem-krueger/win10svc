@@ -38,9 +38,9 @@ namespace ConsoleApplication
     {
         static void Main(string[] args)
         {
-            string zipFile = "services.zip"
+            string zipFile = "services.zip";
             string tempPath = Path.GetTempPath();
-            string extractPath = tempPath + "win10srv\"
+            string extractPath = tempPath + "win10srv\";
             
             Console.WriteLine("Extract {0}...", zipFile);
             ZipFile.ExtractToDirectory(zipFile, extractPath);
