@@ -8,7 +8,6 @@ namespace ConsoleApplication
 {
     class RegistryFileReader
     {
-        // TODO: we need a registry file reader
         string getDisplayName(string registryFile)
         {
             return "";
@@ -66,9 +65,9 @@ namespace ConsoleApplication
                 
                 Console.Write("Reset service '{0}'... ", serviceName);
                 
-                myProcess = Process.Start("reg.exe import " + regFile);
+                importProcess = Process.Start("reg.exe import " + regFile);
                 
-                if myProcess.ExitCode == 0:
+                if importProcess.ExitCode == 0:
                     Console.WriteLine("Success.");
                 else:
                     Console.WriteLine("Fail!");
