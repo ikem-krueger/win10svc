@@ -73,7 +73,7 @@ namespace ConsoleApplication
                 else:
                     Console.WriteLine("Fail!");
                 
-                string startType = reg.getStartType()
+                string startType = reg.getStartType();
                 
                 // TODO: how much service start types exist?
                 if startType == "0": // Automatic
