@@ -18,14 +18,14 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = 1
 
-import win10srv_support
+import win10svc_support
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
     global val, w, root
     root = Tk()
     top = New_Toplevel_1 (root)
-    win10srv_support.init(root, top)
+    win10svc_support.init(root, top)
     root.mainloop()
 
 w = None
@@ -35,7 +35,7 @@ def create_New_Toplevel_1(root, *args, **kwargs):
     rt = root
     w = Toplevel (root)
     top = New_Toplevel_1 (w)
-    win10srv_support.init(w, top, *args, **kwargs)
+    win10svc_support.init(w, top, *args, **kwargs)
     return (w, top)
 
 def destroy_New_Toplevel_1():
@@ -100,10 +100,10 @@ class New_Toplevel_1:
         self.TButton1.configure(takefocus="")
         self.TButton1.configure(text='''About''')
         self.TButton1.configure(underline="0")
-        self.TButton1.bind('<Button-1>',lambda e:win10srv_support.show_about_dialog(e))
-        self.TButton1.bind('<Return>',lambda e:win10srv_support.show_about_dialog(e))
-        self.TButton1.bind('<space>',lambda e:win10srv_support.show_about_dialog(e))
-        top.bind('<Alt-a>',lambda e:win10srv_support.show_about_dialog(e))
+        self.TButton1.bind('<Button-1>',lambda e:win10svc_support.show_about_dialog(e))
+        self.TButton1.bind('<Return>',lambda e:win10svc_support.show_about_dialog(e))
+        self.TButton1.bind('<space>',lambda e:win10svc_support.show_about_dialog(e))
+        top.bind('<Alt-a>',lambda e:win10svc_support.show_about_dialog(e))
 
         self.TButton2 = ttk.Button(top)
         self.TButton2.place(relx=0.37, rely=0.78, height=25, width=76)
@@ -117,10 +117,10 @@ class New_Toplevel_1:
         self.TButton3.configure(takefocus="")
         self.TButton3.configure(text='''Repair''')
         self.TButton3.configure(underline="0")
-        self.TButton3.bind('<Button-1>',lambda e:win10srv_support.repair_windows_services(e))
-        self.TButton3.bind('<Return>',lambda e:win10srv_support.repair_windows_services(e))
-        self.TButton3.bind('<space>',lambda e:win10srv_support.repair_windows_services(e))
-        top.bind('<Alt-r>',lambda e:win10srv_support.repair_windows_services(e))
+        self.TButton3.bind('<Button-1>',lambda e:win10svc_support.repair_windows_services(e))
+        self.TButton3.bind('<Return>',lambda e:win10svc_support.repair_windows_services(e))
+        self.TButton3.bind('<space>',lambda e:win10svc_support.repair_windows_services(e))
+        top.bind('<Alt-r>',lambda e:win10svc_support.repair_windows_services(e))
         self.TButton3.focus()
 
 

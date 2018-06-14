@@ -45,7 +45,7 @@ def update_progress_bar():
     w.TButton2.configure(state=DISABLED)
     w.TButton3.configure(state=DISABLED)
 
-    path = os.getenv("TEMP") + "/win10srv"
+    path = os.getenv("TEMP") + "/win10svc"
 
     zip = zipfile.ZipFile("services.zip")
     zip.extractall(path)
@@ -132,8 +132,8 @@ def destroy_window():
 
 if __name__ == '__main__':
     if ctypes.windll.shell32.IsUserAnAdmin():
-        import win10srv
-        win10srv.vp_start_gui()
+        import win10svc
+        win10svc.vp_start_gui()
     else:
         hinstance = ctypes.windll.shell32.ShellExecuteW(None, 'runas', sys.executable, sys.argv[0], None, 0)
 
