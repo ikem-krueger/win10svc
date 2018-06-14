@@ -23,9 +23,19 @@ namespace ConsoleApplication
             return "";
         }
 
-        bool getStartType()
+        string getStartType()
         {
-            return true;
+            /* 
+            http://daijia11.blogspot.com/2010/08/how-to-change-service-start-type-in.html
+            
+            0x0 Boot
+            0x1 System
+            0x2 Automatic
+            0x3 Manual
+            0x4 Disabled
+            */
+            
+            return "";
         }
 
         bool importToRegistry()
@@ -75,8 +85,7 @@ namespace ConsoleApplication
                 
                 string startType = reg.getStartType();
                 
-                // TODO: how much service start types exist?
-                if startType == "0": // Automatic
+                if startType == "2": // Automatic
                     Console.Write("Start service {0}... ", serviceName);
                     
                     service.Start();
@@ -85,7 +94,7 @@ namespace ConsoleApplication
                         Console.WriteLine("Success.");
                     else:
                         Console.WriteLine("Fail!");
-                else if startType == "1": // Manual
+                else:
                     Console.WriteLine("Skip service {0}...", serviceName);
             }
         }
