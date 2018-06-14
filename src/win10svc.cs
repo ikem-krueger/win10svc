@@ -2,17 +2,13 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.ServiceProcess;
+using System.Diagnostics;
 
 namespace ConsoleApplication
 {
-    class RegistryFile
+    class RegistryFileReader
     {
         // TODO: we need a registry file reader
-        RegistryFile(string file)
-        {
-            Filename = File.open(file);
-        }
-        
         string getDisplayName(string registryFile)
         {
             return "";
@@ -38,12 +34,6 @@ namespace ConsoleApplication
             return "";
         }
 
-        bool importToRegistry()
-        {
-            return true;
-        }
-    }
-
     class Win10Svc()
     {
         static void Main(string[] args)
@@ -59,7 +49,7 @@ namespace ConsoleApplication
             
             foreach(string regFile in regFiles)
             {
-                RegistryFile reg = new RegistryFile(regFile);
+                RegistryFileReader reg = new RegistryFileReader(regFile);
                 
                 serviceName = reg.getDisplayName();
                 
@@ -76,16 +66,16 @@ namespace ConsoleApplication
                 
                 Console.Write("Reset service '{0}'... ", serviceName);
                 
-                bool result = reg.importToRegistry();
+                myProcess = Process.Start("reg.exe import " + regFile);
                 
-                if result == true:
+                if myProcess.ExitCode == 0:
                     Console.WriteLine("Success.");
                 else:
                     Console.WriteLine("Fail!");
                 
                 string startType = reg.getStartType();
                 
-                if startType == "2": // Automatic
+                if startType == 2: // Automatic
                     Console.Write("Start service {0}... ", serviceName);
                     
                     service.Start();
