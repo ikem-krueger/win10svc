@@ -6,4 +6,4 @@ The Windows 10 Service Repair Tool is a small tool to reset the Windows 10 servi
 
 | Operating system | Dependencies         | Status | License  |
 | :--------------- | :------------------- | :----- | :------- |
-| Windows 10       | Python 3.x           | Beta   | AGPL-3.0 |
+| Windows 10       | .NET 4.6.1           | Alpha  | AGPL-3.0 |
