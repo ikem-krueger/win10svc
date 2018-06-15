@@ -65,9 +65,9 @@ namespace ConsoleApplication
                 
                 Console.Write("Reset service '{0}'... ", serviceName);
                 
-                importProcess = Process.Start("reg.exe import " + regFile);
+                regImportProcess = Process.Start("reg.exe import " + regFile);
                 
-                if importProcess.ExitCode == 0:
+                if regImportProcess.ExitCode == 0:
                     Console.WriteLine("Success.");
                 else:
                     Console.WriteLine("Fail!");
