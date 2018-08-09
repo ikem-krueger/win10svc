@@ -241,7 +241,7 @@ namespace ConsoleApplication
             Console.WriteLine("Extract {0}...", zipFile);
             ZipFile.ExtractToDirectory(zipFile, extractPath);
             
-            string[] regFiles = DirectoryPath.GetFiles(extractPath, "*.reg");
+            string[] regFiles = Directory.GetFiles(extractPath, "*.reg");
             
             foreach(string regFile in regFiles)
             {
