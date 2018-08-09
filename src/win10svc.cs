@@ -3,6 +3,8 @@ using System.IO;
 using System.IO.Compression;
 using System.ServiceProcess;
 using System.Diagnostics;
+using System.Text;
+using System.Runtime.InteropServices;
 
 namespace ConsoleApplication
 {
@@ -134,28 +136,38 @@ namespace ConsoleApplication
 
         [DllImport("kernel32.dll")]
         public static extern int FreeLibrary(IntPtr hLibModule);
-    }
 
-    static string GetStringResource(IntPtr handle, uint resourceId)
-    {
-        StringBuilder buffer = new StringBuilder(8192);     //Buffer for output from LoadString()
+        public static string GetStringResource(IntPtr handle, uint resourceId)
+        {
+            StringBuilder buffer = new StringBuilder(8192);     //Buffer for output from LoadString()
 
-        int length = NativeMethods.LoadString(handle, resourceId, buffer, buffer.Capacity);
+            int length = NativeMethods.LoadString(handle, resourceId, buffer, buffer.Capacity);
 
-        return buffer.ToString(0, length);      //Return the part of the buffer that was used.
+            return buffer.ToString(0, length);      //Return the part of the buffer that was used.
+        }
     }
 
     class RegistryFileReader
     {
+        private string FilePath;
+        
+        private string Section;
+        
+        public string ServiceName;
+        public string DisplayName;
+        public string Description;
+        public string StartType;
+
         public RegistryFileReader(string filePath)
         {
-            string this.FilePath = filePath;
-            string this.Section = this.GetSection();
+            FilePath = filePath;
             
-            string this.ServiceName = this.GetServiceName();
-            string this.DisplayName = this.GetDisplayName();
-            string this.Description = this.GetDescription();
-            string this.StartType = this.GetStartType();
+            Section = this.GetSection();
+            
+            ServiceName = this.GetServiceName();
+            DisplayName = this.GetDisplayName();
+            Description = this.GetDescription();
+            StartType = this.GetStartType();
         }
 
         string GetSection()
@@ -167,33 +179,35 @@ namespace ConsoleApplication
 
         string GetServiceName()
         {
-            string serviceName = Path.GetFileName(Section);
+            string serviceName = Path.GetFileName(this.Section);
         
             return serviceName;
         }
         
         string GetDisplayName()
         {
-            string displayName = IniFileHelper.ReadValue(string Section, string "DisplayName", string FilePath);
+            string displayName = IniFileHelper.ReadValue(this.Section, "DisplayName", this.FilePath);
 
-            string path, resourceId = description.Split(",");
+            string path = displayName.Split(",")[0];
+            string resourceId = displayName.Split(",")[1];
 
             string expandedPath = Environment.ExpandEnvironmentVariables(path);
             string absoluteResourceId = Math.Abs(resourceId);
             
-            return GetStringResource((expandedPath, absoluteResourceId);
+            return NativeMethods.GetStringResource(expandedPath, absoluteResourceId);
         }
 
         string GetDescription()
         {
-            string description = IniFileHelper.ReadValue(string Section, string "Description", string FilePath);
+            string description = IniFileHelper.ReadValue(this.Section, "Description", this.FilePath);
             
-            string path, resourceId = description.Split(",");
+            string path = description.Split(",")[0];
+            string resourceId = description.Split(",")[1];
 
             string expandedPath = Environment.ExpandEnvironmentVariables(path);
             string absoluteResourceId = Math.Abs(resourceId);
             
-            return GetStringResource((expandedPath, absoluteResourceId);
+            return NativeMethods.GetStringResource(expandedPath, absoluteResourceId);
         }
 
         string GetStartType()
@@ -208,14 +222,15 @@ namespace ConsoleApplication
             0x4 Disabled
             */
             
-            string startType = IniFileHelper.ReadValue(string Section, string "Start", string FilePath);
+            string startType = IniFileHelper.ReadValue(this.Section, "Start", this.FilePath);
             
-            startType = Convert.ToInt32(startType.Split(":")[1]);
+            startType = startType.Split(":")[1];
             
             return startType;
         }
+    }
 
-    class Win10Svc()
+    class Win10Svc
     {
         static void Main(string[] args)
         {
@@ -238,31 +253,47 @@ namespace ConsoleApplication
                 
                 service.Stop();
                 
-                if service.Status == ServiceControllerStatus.Stopped:
+                if (service.Status == ServiceControllerStatus.Stopped)
+                {
                     Console.WriteLine("Success.");
-                else:
+                }
+                else
+                {
                     Console.WriteLine("Fail!");
+                }
                 
                 Console.Write("Resetting service '{0}'... ", reg.ServiceName);
                 
-                regImportProcess = Process.Start("reg.exe import " + regFile);
+                Process regImportProcess = Process.Start("reg.exe import " + regFile);
                 
-                if regImportProcess.ExitCode == 0:
+                if (regImportProcess.ExitCode == 0)
+                {
                     Console.WriteLine("Success.");
-                else:
+                }
+                else
+                {
                     Console.WriteLine("Fail!");
+                }
                 
-                if reg.StartType == 2: // Automatic
+                if (reg.StartType == "2") // Automatic
+                {
                     Console.Write("Starting service {0}... ", reg.ServiceName);
                     
                     service.Start();
                     
-                    if service.Status == ServiceControllerStatus.Running:
+                    if (service.Status == ServiceControllerStatus.Running)
+                    {
                         Console.WriteLine("Success.");
-                    else:
+                    }
+                    else
+                    {
                         Console.WriteLine("Fail!");
-                else:
+                    }
+                }
+                else
+                {
                     Console.WriteLine("Skipping service {0}...", reg.ServiceName);
+                }
             }
         }
     }
