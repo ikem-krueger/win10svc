@@ -59,7 +59,7 @@ class New_Toplevel_1:
         self.TLabel1 = ttk.Label(top)
         self.TLabel1.place(relx=0.30, rely=0.1, height=26, width=120)
         self.TLabel1.configure(font="-size 14 -weight bold")
-        self.TLabel1.configure(text='''win10srv 1.0''')
+        self.TLabel1.configure(text='''win10svc 1.0''')
 
         self.TLabel2 = ttk.Label(top)
         self.TLabel2.place(relx=0.10, rely=0.26, height=19, width=240)
@@ -77,7 +77,7 @@ class New_Toplevel_1:
         self.TLabel4.place(relx=0.1, rely=0.68, height=19, width=229)
         self.TLabel4.configure(foreground="blue")
         self.TLabel4.configure(font="-size 9 -underline 1")
-        self.TLabel4.configure(text='''https://github.com/ikem-krueger/win10srv''')
+        self.TLabel4.configure(text='''https://github.com/ikem-krueger/win10svc''')
         self.TLabel4.configure(cursor="hand2")
         self.TLabel4.bind('<Button-1>',callback)
 
