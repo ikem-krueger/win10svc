@@ -1,3 +1,5 @@
+. ($PSScriptRoot + '\win10svc_support.ps1')
+
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
@@ -50,6 +52,9 @@ $TButton1.Location = "12,168"
 $TButton1.Size = "75,25"
 $TButton1.Text = "&About"
 $TButton1.TabIndex = 2
+$TButton1.Add_Click({
+	. Show_About_Dialog
+})
 
 $TButton2 = New-Object System.Windows.Forms.Button
 $TButton2.Location = "102,168"

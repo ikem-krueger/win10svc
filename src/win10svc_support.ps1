@@ -1,5 +1,5 @@
-function Show-About-Dialog() {
-	Write-Host 'Debug: Show-About-Dialog()'
+function Show_About_Dialog() {
+	. ($PSScriptRoot + '\dialogs\about_dialog.ps1')
 }
 
 function Show-Log-File() {
