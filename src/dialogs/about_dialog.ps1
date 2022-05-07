@@ -45,6 +45,12 @@ $Form1.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedSingle
 $Form1.ClientSize = "284,193"
 $Form1.Text = "About - Windows 10 Service Tool"
 $Form1.MaximizeBox = $false
+$Form1.KeyPreview = $true
+$Form1.Add_KeyDown({
+	if($_.KeyCode -eq "Escape") {
+		$Form1.Close()
+	}
+})
 
 $Form1.Controls.Add($Button1)
 $Form1.Controls.Add($LinkLabel1)

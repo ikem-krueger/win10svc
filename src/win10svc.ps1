@@ -76,6 +76,12 @@ $top.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedSingle
 $top.ClientSize = "282,203"
 $top.Text = "Windows 10 Service Repair"
 $top.MaximizeBox = $false
+$top.KeyPreview = $true
+$top.Add_KeyDown({
+	if($_.KeyCode -eq "Escape") {
+		$top.Close()
+	}
+})
 
 $top.Controls.Add($TLabel1)
 $top.Controls.Add($TLabel2)
