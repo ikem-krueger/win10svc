@@ -1,4 +1,4 @@
-function Show_About_Dialog() {
+function Show-About-Dialog() {
 	. ($PSScriptRoot + '\dialogs\about_dialog.ps1')
 }
 
