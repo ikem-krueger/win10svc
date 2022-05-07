@@ -49,16 +49,19 @@ $TButton1 = New-Object System.Windows.Forms.Button
 $TButton1.Location = "12,168"
 $TButton1.Size = "75,25"
 $TButton1.Text = "&About"
+$TButton1.TabIndex = 2
 
 $TButton2 = New-Object System.Windows.Forms.Button
 $TButton2.Location = "102,168"
 $TButton2.Size = "75,25"
 $TButton2.Text = "&Log"
+$TButton2.TabIndex = 1
 
 $TButton3 = New-Object System.Windows.Forms.Button
 $TButton3.Location = "195,168"
 $TButton3.Size = "75,25"
 $TButton3.Text = "&Repair"
+$TButton3.TabIndex = 0
 
 $top = New-Object System.Windows.Forms.Form
 
