@@ -56,6 +56,7 @@ $TButton2.Location = "102,168"
 $TButton2.Size = "75,25"
 $TButton2.Text = "&Log"
 $TButton2.TabIndex = 1
+$TButton2.Enabled = $false
 
 $TButton3 = New-Object System.Windows.Forms.Button
 $TButton3.Location = "195,168"
