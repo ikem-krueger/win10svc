@@ -1,5 +1,0 @@
-- [ ] port it from Python and Tkinter to C# and Winform
-- [ ] build executable with "py2exe"
-- [ ] implement check for Windows 10
-- [ ] move extracting of the "services.zip" in a separate function
-- [ ] merge log file/about dialog
