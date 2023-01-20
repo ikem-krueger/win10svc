@@ -1,0 +1,2 @@
+https://gist.github.com/rileyz/52e721a609a9143158180f77b9f7ea0b#file-import-registry-ps1-L67
+https://social.technet.microsoft.com/Forums/scriptcenter/en-US/a623f698-4364-40bf-84a1-1fbae3852c1d/powershell-how-to-parse-a-registry-text-file?forum=ITCG
